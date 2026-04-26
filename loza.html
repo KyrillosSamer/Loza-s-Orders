@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang='ar' dir='rtl'>
+<head>
+<meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<title>Loza's Orders</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<!-- CSS File -->
+<link rel="stylesheet" href="loza.css">
+</head>
+<body>
+
+<div class='wrap'>
+  <div class='header'>
+    <h1>✦ Loza's Orders</h1>
+    <p>تتبع طلباتك وعملاءك بسهولة واحترافية</p>
+  </div>
+
+  <!-- Shipment Tabs Bar -->
+  <div class='shipment-bar' id='shipmentBar'></div>
+
+  <div class='grid'>
+    <!-- Add Order Card -->
+    <div class='card' id='formCard'>
+      <div class='card-title'>
+        <div class='icon'>➕</div>
+        <h2>إضافة أوردر جديد</h2>
+      </div>
+
+      <div class='input-group'>
+        <label>سعر الريال</label>
+        <input id='rate' type='number' placeholder='سعر الريال' value='13'>
+      </div>
+
+      <div class='input-group'>
+        <label>اسم العميل</label>
+        <input id='name' placeholder='اكتب اسم العميل...'>
+      </div>
+
+      <div class='input-group'>
+        <label>نوع القطعة</label>
+        <input id='item' placeholder='نوع القطعة أو المنتج...'>
+      </div>
+
+      <div class='input-group'>
+        <label>العدد</label>
+        <input id='qty' type='number' placeholder='الكمية' value='1' min='1'>
+      </div>
+
+      <div class='row'>
+        <div class='input-group'>
+          <label>السعر (ريال)</label>
+          <input id='sar' type='number' placeholder='0.00'>
+        </div>
+        <div class='input-group'>
+          <label>المكسب (جنيه)</label>
+          <input id='profit' type='number' placeholder='0'>
+        </div>
+      </div>
+
+      <div class='input-group'>
+        <label>نوع الشحن</label>
+        <div class='delivery-toggle'>
+          <button class='delivery-btn active-bary' id='btnBary' onclick="setDelivery('bary')">🚢 بري</button>
+          <button class='delivery-btn' id='btnGowy' onclick="setDelivery('gowy')">✈️ جوي</button>
+        </div>
+      </div>
+
+      <label class='checkbox-row' for='extra'>
+        <input type='checkbox' id='extra'>
+        <span>⚡ إضافة زيادة 25%</span>
+      </label>
+
+      <button class='btn' onclick='addOrder()'>✦ إضافة الأوردر</button>
+    </div>
+
+    <!-- Orders List Card -->
+    <div class='card' id='listCard'>
+      <!-- Print-only header -->
+      <div id='printHeader'>
+        <h2 id='printTitle'>Loza's Orders</h2>
+        <p id='printDate'></p>
+      </div>
+
+      <div class='card-title'>
+        <div class='icon'>📋</div>
+        <h2 id='listTitle'>قائمة الطلبات</h2>
+        <button class='btn-pdf' onclick='printPDF()'>🖨️ طباعة PDF</button>
+      </div>
+
+      <div class='total-bar'>
+        <div>
+          <div class='label'>إجمالي المبيعات</div>
+          <div class='amount' id='totalAmt'>0 جنيه</div>
+        </div>
+        <div id='orderCount' class='count'>0 أوردر</div>
+      </div>
+
+      <div class='filter-tabs'>
+        <button class='filter-tab active-all' id='fAll'  onclick="setFilter('all')">🔍 الكل</button>
+        <button class='filter-tab' id='fBary' onclick="setFilter('bary')">🚢 بري</button>
+        <button class='filter-tab' id='fGowy' onclick="setFilter('gowy')">✈️ جوي</button>
+      </div>
+
+      <div id='list'></div>
+    </div>
+  </div>
+</div>
+
+<!-- JS File -->
+<script src="loza.js"></script>
+</body>
+</html>
